@@ -1,0 +1,22 @@
+@layout("../../system/layout.html", {title: ""}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">分组名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="分组名称" v-model="funGroup.groupName" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">分组状态<font face="宋体">*</font></td>
+        <td class="formValue">
+            <label class="radio-inline">
+                <input type="radio" name="status" value="0" v-model="funGroup.groupState"/> 禁用
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="status" value="1" v-model="funGroup.groupState"/> 正常
+            </label>
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/fun/group/edit.js"></script>
+@}

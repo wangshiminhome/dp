@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.fun.dao.FunPersonMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.fun.entity.FunPersonEntity">
+		SELECT
+			`person_id`, 
+			`person_name`, 
+			`person_description`, 
+			`group_id`
+		FROM
+			fun_person
+		ORDER BY
+			person_id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO fun_person (
+			`person_name`, 
+			`person_description`, 
+			`group_id`
+		)
+		VALUES (
+			#{personName}, 
+			#{personDescription}, 
+			#{groupId}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.fun.entity.FunPersonEntity">
+		SELECT
+			`person_id`, 
+			`person_name`, 
+			`person_description`, 
+			`group_id`
+		FROM
+			fun_person
+		WHERE
+			person_id = #{personId}
+	</select>
+	
+	<update id="update">
+		UPDATE fun_person
+	 	<set>
+			<if test="personName != null">`person_name` = #{personName}, </if>
+			<if test="personDescription != null">`person_description` = #{personDescription}, </if>
+			<if test="groupId != null">`group_id` = #{groupId}</if>
+		</set>
+		WHERE
+			person_id = #{personId}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			fun_person
+		WHERE
+			person_id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

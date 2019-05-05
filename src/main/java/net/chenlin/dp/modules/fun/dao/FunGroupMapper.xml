@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.chenlin.dp.modules.fun.dao.FunGroupMapper">
+	
+	<select id="listForPage" resultType="net.chenlin.dp.modules.fun.entity.FunGroupEntity">
+		SELECT
+			fg.`group_id`,
+			fg.`group_name`,
+			fg.`group_state`,
+			fg.`add_time`,
+			fg.`user_id`,
+		    su.username
+		FROM
+			fun_group fg
+			left join sys_user su on fg.user_id=su.user_id
+		ORDER BY
+			group_id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO fun_group (
+			`group_name`, 
+			`group_state`, 
+			`add_time`, 
+			`user_id`
+		)
+		VALUES (
+			#{groupName}, 
+			#{groupState}, 
+			#{addTime}, 
+			#{userId}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.chenlin.dp.modules.fun.entity.FunGroupEntity">
+		SELECT
+			`group_id`, 
+			`group_name`, 
+			`group_state`, 
+			`add_time`, 
+			`user_id`
+		FROM
+			fun_group
+		WHERE
+			group_id = #{groupId}
+	</select>
+	
+	<update id="update">
+		UPDATE fun_group
+	 	<set>
+			<if test="groupName != null">`group_name` = #{groupName}, </if>
+			<if test="groupState != null">`group_state` = #{groupState}, </if>
+			<if test="addTime != null">`add_time` = #{addTime}, </if>
+			<if test="userId != null">`user_id` = #{userId}</if>
+		</set>
+		WHERE
+			group_id = #{groupId}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			fun_group
+		WHERE
+			group_id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

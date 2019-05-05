@@ -1,0 +1,29 @@
+@layout("../../system/layout.html", {title: ""}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">分组名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="分组名称" v-model="funGroup.groupName" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <!--<tr>
+        <td class="formTitle">分组状态<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="分组状态" v-model="funGroup.groupState" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">创建时间<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="创建时间" v-model="funGroup.addTime" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">拥有人id<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="拥有人id" v-model="funGroup.userId" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>-->
+</table>
+<script src="${ctxPath}/static/js/fun/group/add.js"></script>
+@}
